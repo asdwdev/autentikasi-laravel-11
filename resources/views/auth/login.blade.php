@@ -18,18 +18,28 @@
         </div>
     @endif
 
-    <form>
+    @if (session('error'))
+        <div style="color: red; border: 1px solid red; padding: 10px; margin-bottom: 10px;">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <form action="{{ route('login') }}" method="POST">
+        @csrf
         <div>
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" required>
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div>
+            <button type="submit">Login</button>
         </div>
     </form>
 
-    <p>Belum punya akun? silahkan <a href="{{ route('register.form') }}">Register</a></p>
+    <p>Belum punya akun? Silakan <a href="{{ route('register.form') }}">Register</a></p>
 
 </body>
 
